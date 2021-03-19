@@ -1,6 +1,12 @@
 require('dotenv').config(); // подключили NPM dotenv
 const { Telegraf } = require('telegraf'); // подключили API Telegram
 const fetch = require('node-fetch'); // подключили NPM для реализации fetch в Node.js
+require('https')
+  .createServer()
+  .listen(process.env.PORT || 5000)
+  .on('request', function (req, res) {
+    res.end('');
+  });
 
 const bot = new Telegraf(process.env.BOT_TOKEN); // указал токен моего бота
 bot.start((ctx) => {
@@ -12,7 +18,7 @@ bot.start((ctx) => {
 
 // Логика ответа на сообщение
 bot.on('message', async (ctx) => {
-  let url = ctx.message.text; // пременая с текстом сообщения
+  let url = ctx.message.text; // переменая с текстом сообщения
   console.log(url);
 
   try {
