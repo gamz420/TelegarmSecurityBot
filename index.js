@@ -1,14 +1,12 @@
 require('dotenv').config(); // подключили NPM dotenv
 const { Telegraf } = require('telegraf'); // подключили API Telegram
 const fetch = require('node-fetch'); // подключили NPM для реализации fetch в Node.js
-const express = require('express');
-
-const app = express();
-const PORT = 3003;
-
-app.listen(PORT, () => {
-  console.log('Server started on port ', PORT);
-});
+require('https')
+  .createServer()
+  .listen(process.env.PORT || 5000)
+  .on('request', function (req, res) {
+    res.end('');
+  });
 
 const bot = new Telegraf(process.env.BOT_TOKEN); // указал токен моего бота
 bot.start((ctx) => {
